@@ -2,4 +2,34 @@
 GET http://localhost:3000/
 
 ###
-GET
+GET http://localhost:3000/api/people/3
+
+###
+POST http://localhost:3000/api/people/post
+Content-Type: application/json
+
+{
+    "name": "The Mandalorian",
+    "nickname": "Mando",
+    "fav_color": "Dark",
+    "location": "Mandalore",
+    "bday": "unknown",
+    "hobby1": 9,
+    "hobby2": 4,
+    "hobby3": 12
+}
+
+###
+POST http://localhost:3000/api/people/post
+Content-Type: application/json
+
+{
+    "name": "The Mandalorian",
+    "nickname": "Mando",
+    "fav_color": "Dark",
+    "location": "Mandalore",
+    "bday": "unknown",
+    "hobby1": 9,
+    "hobby2": 4,
+    "hobby3": 12
+}

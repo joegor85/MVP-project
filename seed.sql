@@ -15,12 +15,12 @@ INSERT INTO hobbies (name, time_cost, skill_required, materials_required) VALUES
 INSERT INTO hobbies (name, time_cost, skill_required, materials_required) VALUES ('watching tv', 'low', FALSE, 'television');
 INSERT INTO hobbies (name, time_cost, skill_required, materials_required) VALUES ('bikeriding', 'low', TRUE, 'bicycle');
 
-INSERT INTO people (name, nickname, fav_color, location, bday, hobby1, hobby2, hobby3) VALUES ('Stephen', 'Joe', 'red', 'Texas', '7OCT', 1, 5, 2);
-INSERT INTO people (name, nickname, fav_color, location, bday, hobby1, hobby2, hobby3) VALUES ('Kimberly', 'Kim', 'purple', 'Texas', '22DEC', 13, 8, 5);
-INSERT INTO people (name, nickname, fav_color, location, bday, hobby1, hobby2, hobby3) VALUES ('Brian', 'Brybry', 'black', 'Texas', '18SEP', 2, 14, 6);
-INSERT INTO people (name, fav_color, location, bday, hobby1, hobby2, hobby3) VALUES ('Amy', 'pink', 'Texas', '27SEP', 16, 10, 15);
-INSERT INTO people (name, nickname, fav_color, location, bday, hobby1, hobby2, hobby3) VALUES ('Jason', 'JJ', 'blue', 'Texas', '5MAR', 11, 15, 1);
-INSERT INTO people (name, nickname, location, bday, hobby1, hobby2, hobby3) VALUES ('Andrew', 'Andy', 'Texas', '14NOV', 12, 15, 2);
+INSERT INTO people (name, nickname, fav_color, location, bday, hobby1, hobby2, hobby3) VALUES ('Stephen', 'Joe', 'red', 'Texas', 'OCT', 1, 5, 2);
+INSERT INTO people (name, nickname, fav_color, location, bday, hobby1, hobby2, hobby3) VALUES ('Kimberly', 'Kim', 'purple', 'Texas', 'DEC', 13, 8, 5);
+INSERT INTO people (name, nickname, fav_color, location, bday, hobby1, hobby2, hobby3) VALUES ('Brian', 'Brybry', 'black', 'Texas', 'SEP', 2, 14, 6);
+INSERT INTO people (name, fav_color, location, bday, hobby1, hobby2, hobby3) VALUES ('Amy', 'pink', 'Texas', 'SEP', 16, 10, 15);
+INSERT INTO people (name, nickname, fav_color, location, bday, hobby1, hobby2, hobby3) VALUES ('Jason', 'JJ', 'blue', 'Texas', 'MAR', 11, 15, 1);
+INSERT INTO people (name, nickname, location, bday, hobby1, hobby2, hobby3) VALUES ('Andrew', 'Andy', 'Texas', 'NOV', 12, 15, 2);
 
 -- list of hobbies:
 -- 1 - reading
