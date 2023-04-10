@@ -25,9 +25,7 @@ app.get("/api/people/:id", (req, res) => {
     return;
   }
   pool.query(`SELECT * FROM people WHERE id = $1;`, [id]).then((result) => {
-    console.log(result);
     if (result.rows.length === 0) {
-      // Need to figure out why it's not returning 404
       res.status(404).send("The person you are looking for is not here.");
       return;
     } else {
@@ -67,13 +65,33 @@ app.post("/api/people/post", (req, res) => {
         ]
       )
       .then((result) => {
-        res.send(member);
+        res.status(201).send(member);
       });
   }
 });
 
-app.delete("/api/people/delete", (req, res)=> {
-
+app.delete("/api/people/:id", (req, res) => {
+  let id = req.params.id;
+  if (isNaN(id)) {
+    res.status(404).send("Enter a valid person id.");
+    return;
+  }
+  pool.query(`SELECT * FROM people WHERE id = $1;`, [id]).then((result) => {
+    if (result.rows.length === 0) {
+      res
+        .status(404)
+        .send("The person you are trying to delete is already not here.");
+      return;
+    } else {
+      pool
+        .query(`DELETE FROM people WHERE id = $1 RETURNING *;`, [id])
+        .then((result) => {
+          //console.log(result);
+          //console.log(result.rows[0].name);
+          res.status(200).send(`${result.rows[0].name} has been deleted`);
+        });
+    }
+  });
 });
 
 //start the server running
