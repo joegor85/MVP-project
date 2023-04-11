@@ -36,18 +36,23 @@ const peopleContainer = document.querySelector("#peopleContainer");
 //   });
 // }
 
-fetch("/api/people")
-  .then((response) => response.json())
-  .then((people) => {
-    people.forEach((person) => {
-      const div = document.createElement("div");
-      div.classList.add("peopleDivs");
-      div.innerHTML = `<h1>${person.id}. ${person.name}</h1>`;
-      div.dataset.personId = person.id;
-      peopleContainer.appendChild(div);
-      addPeopleListeners(div);
+function displayPeople() {
+  //clear out anything in there first
+  peopleContainer.innerHTML = "";
+  fetch("/api/people")
+    .then((response) => response.json())
+    .then((people) => {
+      people.forEach((person) => {
+        const div = document.createElement("div");
+        div.classList.add("peopleDivs");
+        div.innerHTML = `<h1>${person.id}. ${person.name}</h1>`;
+        div.dataset.personId = person.id;
+        peopleContainer.appendChild(div);
+        addPeopleListeners(div);
+      });
     });
-  });
+}
+displayPeople();
 
 function addPeopleListeners(div) {
   div.addEventListener("click", (e) => {
@@ -72,3 +77,46 @@ function addPeopleListeners(div) {
       });
   });
 }
+
+const addButton = document.querySelector("#addButton");
+
+addButton.addEventListener("click", (e) => {
+  //this prevents the browser from navigating to a new page in the post route
+  e.preventDefault();
+  const name = document.querySelector(".name").value;
+  const nickname = document.querySelector(".nickName").value;
+  const favColor = document.querySelector(".fav_color").value;
+  const location = document.querySelector(".location").value;
+  const bday = document.querySelector(".bday").value;
+  const hobby1 = document.querySelector(".hobby1").value;
+  const hobby2 = document.querySelector(".hobby2").value;
+  const hobby3 = document.querySelector(".hobby3").value;
+
+  const data = {
+    name: name,
+    nickname: nickname,
+    fav_color: favColor,
+    location: location,
+    bday: bday,
+    hobby1: hobby1,
+    hobby2: hobby2,
+    hobby3: hobby3,
+  };
+
+  fetch("/api/people/post", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data);
+      // do something with the response - refresh the page with all people including the new one
+      displayPeople();
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+    });
+});
