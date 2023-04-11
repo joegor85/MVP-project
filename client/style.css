@@ -7,7 +7,7 @@ body {
   border: 2px solid black;
 }
 
-#memberContainer {
+#memberContainer, #hobbyReqContainer, #hobbyKey {
   border: 2px solid black;
 }
 

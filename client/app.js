@@ -1,41 +1,5 @@
 const peopleContainer = document.querySelector("#peopleContainer");
 
-// fetch("/api/people")
-//   .then((response) => response.json())
-//   .then((people) => {
-//     people.forEach((person) => {
-//       peopleContainer.innerHTML += `<div class="peopleDivs"><h1>${person.id}. ${person.name}</h1></div>`;
-//       const peopleDivs = document.querySelectorAll(".peopleDivs");
-//       addPeopleListeners(peopleDivs);
-//     });
-//   });
-
-// function addPeopleListeners(divs) {
-//   divs.forEach((div) => {
-//     div.addEventListener("click", (e) => {
-//       //peopleDivs.addEventListener("Click", (e) => {
-//       //Clear out anything already in this box
-//       const memberContainer = document.getElementById("memberContainer");
-//       const hobbyReqContainer = document.getElementById("hobbyReqContainer");
-//       memberContainer.innerHTML = "";
-//       fetch(`/api/people/${person.id}`)
-//         .then((response) => response.json())
-//         .then((person) => {
-//           console.log(person);
-//           memberContainer.innerHTML = `<h2 id="name">Name: ${person.name}</h2><h2 id="nickname">Nickname: ${person.nickname}</h2>
-//         <div class="aboutme"><h3 id="aboutMeTitle">About Me:</h3>
-//         <p id="aboutMeInfo">My name is ${person.name}, but I go by ${person.nickname}. My favorite color is ${person.fav_color}, I live in ${person.location}, and my birthday is ${person.bday}.:</p>
-//         </div>
-//         <div class="hobbies"><h3 id="hobbiesTitle">Hobbies:</h3><p id="hobbyInfo">${person.hobby1}, ${person.hobby1}, ${person.hobby1}</p>
-//         </div>`;
-//           //Want this to work, but for now:
-//           //hobbyReqContainer.innerHTML = `<h3 id="hobbiesReq">Hobby requirements: ${person.materials_required}</h3>`;
-//           hobbyReqContainer.innerHTML = `<h3 id="hobbiesReq">Hobby requirements: ${person.hobby1}, ${person.hobby2}, ${person.hobby3}</h3>`;
-//         });
-//     });
-//   });
-// }
-
 function displayPeople() {
   //clear out anything in there first
   peopleContainer.innerHTML = "";
@@ -73,6 +37,8 @@ function addPeopleListeners(div) {
         </div>`;
         //Want this to work, but for now:
         //hobbyReqContainer.innerHTML = `<h3 id="hobbiesReq">Hobby requirements: ${person.materials_required}</h3>`;
+
+        
         hobbyReqContainer.innerHTML = `<h3 id="hobbiesReq">Hobby requirements: ${person.hobby1}, ${person.hobby2}, ${person.hobby3}</h3>`;
       });
   });
@@ -143,6 +109,7 @@ deleteButton.addEventListener("click", (e) => {
 
 //Getting Update to work
 //Fields to use
+const uId = document.querySelector(".updateId");
 const uName = document.querySelector(".updateName");
 const uNickname = document.querySelector(".updateNickname");
 const uFavColor = document.querySelector(".updateFav_color");
@@ -161,6 +128,7 @@ searchButton.addEventListener("click", (e) => {
     .then((response) => response.json())
     .then((person) => {
       console.log(person);
+      uId.value = person.id;
       uName.value = person.name;
       uNickname.value = person.nickname;
       uFavColor.value = person.fav_color;
@@ -174,3 +142,34 @@ searchButton.addEventListener("click", (e) => {
 
 //Doing the updates:
 const updatePersonButton = document.querySelector("#updateButton");
+updatePersonButton.addEventListener("click", (e) => {
+  e.preventDefault();
+  const updateData = {
+    id: uId.value,
+    name: uName.value,
+    nickname: uNickname.value,
+    fav_color: uFavColor.value,
+    location: uLocation.value,
+    bday: uBday.value,
+    hobby1: uHobby1.value,
+    hobby2: uHobby2.value,
+    hobby3: uHobby3.value,
+  };
+// do the patch route:
+  fetch(`/api/people/patch/${updateData.id}`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(updateData),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data);
+      // do something with the response - refresh the page with all people including the updated one
+      displayPeople();
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+    });
+});

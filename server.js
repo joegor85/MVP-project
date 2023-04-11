@@ -35,16 +35,32 @@ app.get("/api/people/:id", (req, res) => {
     res.status(404).send("Enter a valid person id.");
     return;
   }
-  //want to modify this later:
-  //SELECT * FROM people WHERE id = $1 JOIN hobbies ON people.hobby1=hobbies.hobby_id JOIN hobbies ON people.hobby2=hobbies.hobby_id JOIN hobbies ON people.hobby3=hobbies.hobby_id;
-  pool.query(`SELECT * FROM people WHERE id = $1;`, [id]).then((result) => {
-    if (result.rows.length === 0) {
-      res.status(404).send("The person you are looking for is not here.");
-      return;
-    } else {
-      res.send(result.rows[0]);
-    }
-  });
+  // This complicated query will fetch all of the data I want in one table
+  pool
+    .query(
+      `SELECT 
+  p.*,
+  string_agg(h.name, ', ') AS hobby_names,
+  string_agg(h.materials_required, ' | ') AS all_materials_required
+FROM 
+  people p 
+  LEFT JOIN hobbies h ON h.hobby_id IN (p.hobby1, p.hobby2, p.hobby3)
+WHERE 
+  p.id = $1
+GROUP BY 
+  p.id;`,
+      [id]
+    )
+    .then((result) => {
+      //This code below only fetches hobby Id's from person table
+      //pool.query(`SELECT * FROM people WHERE id = $1;`, [id]).then((result) => {
+      if (result.rows.length === 0) {
+        res.status(404).send("The person you are looking for is not here.");
+        return;
+      } else {
+        res.send(result.rows[0]);
+      }
+    });
 });
 
 // Create a new person
