@@ -21,5 +21,14 @@ Content-Type: application/json
 
 # Testing Delete
 ###
-DELETE http://localhost:3000/api/people/7
+DELETE http://localhost:3000/api/people/delete/8
 
+# Testing Patch
+###
+PATCH http://localhost:3000/api/people/patch/9
+Content-Type: application/json
+
+{
+    "fav_color": "Dark",
+    "location": "Mandalore"
+}

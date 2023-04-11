@@ -73,7 +73,7 @@ app.post("/api/people/post", (req, res) => {
 });
 
 // Delete a person
-app.delete("/api/people/:id", (req, res) => {
+app.delete("/api/people/delete/:id", (req, res) => {
   let id = req.params.id;
   if (isNaN(id)) {
     res.status(404).send("Enter a valid person id.");
@@ -99,7 +99,69 @@ app.delete("/api/people/:id", (req, res) => {
 
 //Update a Person
 // My new code here:
-//
+
+app.patch("/api/people/patch/:id", (req, res) => {
+  let personId = req.params.id;
+  if (isNaN(personId)) {
+    res.status(404).send("Enter a valid person id.");
+    return;
+  }
+  pool
+    .query(`SELECT * FROM people WHERE id = $1`, [personId])
+    .then((result) => {
+      //console.log(result.rows);
+      if (result.rows.length === 0) {
+        console.log("This person doesn't exist.");
+        res.status(404).send("This person doesn't exist.");
+        return;
+      } else {
+        //let key = Object.keys(req.body)[0];
+        //let value = Object.values(req.body)[0];
+        // Iterate over all key-value pairs in request body
+        let updatedFields = {};
+        Object.entries(req.body).forEach(([key, value]) => {
+          // Update the necessary field in the database
+          pool
+            .query(`UPDATE people SET ${key}=$1 WHERE id=$2 RETURNING *`, [
+              value,
+              personId,
+            ])
+            .then((result) => {
+              result = result.rows[0];
+              updatedFields[key] = value;
+              //res.send(result);
+              console.log(`Updated ${key} to ${value}`);
+              // Check if all fields have been updated
+              if (
+                Object.keys(updatedFields).length ===
+                Object.keys(req.body).length
+              ) {
+                // Fetch the updated person record and return it as the response
+                pool
+                  .query(`SELECT * FROM people WHERE id = $1`, [personId])
+                  .then((result) => {
+                    res.send(result.rows[0]);
+                  })
+                  .catch((error) => {
+                    console.error(
+                      `Failed to fetch updated person record: ${error}`
+                    );
+                    res.status(500).send("Internal Server Error");
+                  });
+              }
+            })
+            .catch((error) => {
+              res.status(500).send(`Failed to update ${key}: ${error}`);
+              console.error(`Failed to update ${key}: ${error}`);
+            });
+        });
+      }
+    })
+    .catch((error) => {
+      console.error(`Failed to fetch person record: ${error}`);
+      res.status(500).send("Internal Server Error");
+    });
+});
 
 //start the server running
 app.listen(PORT, (error) => {
