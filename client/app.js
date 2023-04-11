@@ -78,8 +78,8 @@ function addPeopleListeners(div) {
   });
 }
 
+// POST method using the "Add Person" form at the bottom of page
 const addButton = document.querySelector("#addButton");
-
 addButton.addEventListener("click", (e) => {
   //this prevents the browser from navigating to a new page in the post route
   e.preventDefault();
@@ -119,4 +119,24 @@ addButton.addEventListener("click", (e) => {
     .catch((error) => {
       console.error("Error:", error);
     });
+});
+
+//DELETE method using "Delete Person" button/input at bottom of page
+const deleteButton = document.querySelector("#deleteButton");
+const deleteId = document.querySelector("#deleteId");
+deleteButton.addEventListener("click", (e) => {
+  //this prevents the browser from navigating to a new page in the post route
+  e.preventDefault();
+  console.log(deleteId);
+  fetch(`/api/people/delete/${deleteId.value}`, {
+    method: "Delete",
+  })
+    .then((response) => response.text())
+    .then((result) => {
+      console.log(result);
+      // display result to user and modify page
+      alert(`Member ${result}`);
+      displayPeople();
+    })
+    .catch((error) => console.log("error", error));
 });

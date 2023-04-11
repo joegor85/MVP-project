@@ -23,7 +23,7 @@ app.get("/test", (req, res) => {
 // Read all people
 app.get("/api/people", (req, res) => {
   pool.query(`SELECT * FROM people`).then((result) => {
-    console.log(result.rows);
+    //console.log(result.rows);
     res.json(result.rows);
   });
 });
@@ -87,6 +87,7 @@ app.post("/api/people/post", (req, res) => {
 // Delete a person
 app.delete("/api/people/delete/:id", (req, res) => {
   let id = req.params.id;
+  console.log(id);
   if (isNaN(id)) {
     res.status(404).send("Enter a valid person id.");
     return;
@@ -103,7 +104,8 @@ app.delete("/api/people/delete/:id", (req, res) => {
         .then((result) => {
           //console.log(result);
           //console.log(result.rows[0].name);
-          res.status(200).send(`${result.rows[0].name} has been deleted`);
+          const deletedPersonName = result.rows[0].name;
+          res.status(200).send(`${deletedPersonName} has been deleted.`);
         });
     }
   });
