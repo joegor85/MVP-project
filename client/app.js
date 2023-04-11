@@ -140,3 +140,37 @@ deleteButton.addEventListener("click", (e) => {
     })
     .catch((error) => console.log("error", error));
 });
+
+//Getting Update to work
+//Fields to use
+const uName = document.querySelector(".updateName");
+const uNickname = document.querySelector(".updateNickname");
+const uFavColor = document.querySelector(".updateFav_color");
+const uLocation = document.querySelector(".updateLocation");
+const uBday = document.querySelector(".updateBday");
+const uHobby1 = document.querySelector(".updateHobby1");
+const uHobby2 = document.querySelector(".updateHobby2");
+const uHobby3 = document.querySelector(".updateHobby3");
+
+//Adding event listener to searchButton to prepopulate fields before doing UPDATE:
+const searchButton = document.querySelector("#updateSearchButton");
+searchButton.addEventListener("click", (e) => {
+  e.preventDefault();
+  const searchInput = document.querySelector("#updateNameSearch");
+  fetch(`/api/people/${searchInput.value}`)
+    .then((response) => response.json())
+    .then((person) => {
+      console.log(person);
+      uName.value = person.name;
+      uNickname.value = person.nickname;
+      uFavColor.value = person.fav_color;
+      uLocation.value = person.location;
+      uBday.value = person.bday;
+      uHobby1.value = person.hobby1;
+      uHobby2.value = person.hobby2;
+      uHobby3.value = person.hobby3;
+    });
+});
+
+//Doing the updates:
+const updatePersonButton = document.querySelector("#updateButton");
