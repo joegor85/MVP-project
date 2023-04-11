@@ -18,6 +18,7 @@ app.get("/", (req, res) => {
   res.send({ hello: "world" });
 });
 
+// Read a specific person
 app.get("/api/people/:id", (req, res) => {
   let id = req.params.id;
   if (isNaN(id)) {
@@ -34,6 +35,7 @@ app.get("/api/people/:id", (req, res) => {
   });
 });
 
+// Create a new person
 app.post("/api/people/post", (req, res) => {
   let member = req.body;
   if (!member.name || !member.bday) {
@@ -70,6 +72,7 @@ app.post("/api/people/post", (req, res) => {
   }
 });
 
+// Delete a person
 app.delete("/api/people/:id", (req, res) => {
   let id = req.params.id;
   if (isNaN(id)) {
@@ -93,6 +96,10 @@ app.delete("/api/people/:id", (req, res) => {
     }
   });
 });
+
+//Update a Person
+// My new code here:
+//
 
 //start the server running
 app.listen(PORT, (error) => {
