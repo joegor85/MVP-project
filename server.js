@@ -13,9 +13,19 @@ pool.connect();
 // Use JSON middleware to parse incoming JSON data
 app.use(express.json());
 
+app.use(express.static(`client`));
+
 //set up a test route
-app.get("/", (req, res) => {
+app.get("/test", (req, res) => {
   res.send({ hello: "world" });
+});
+
+// Read all people
+app.get("/api/people", (req, res) => {
+  pool.query(`SELECT * FROM people`).then((result) => {
+    console.log(result.rows);
+    res.json(result.rows);
+  });
 });
 
 // Read a specific person
@@ -25,6 +35,8 @@ app.get("/api/people/:id", (req, res) => {
     res.status(404).send("Enter a valid person id.");
     return;
   }
+  //want to modify this later:
+  //SELECT * FROM people WHERE id = $1 JOIN hobbies ON people.hobby1=hobbies.hobby_id JOIN hobbies ON people.hobby2=hobbies.hobby_id JOIN hobbies ON people.hobby3=hobbies.hobby_id;
   pool.query(`SELECT * FROM people WHERE id = $1;`, [id]).then((result) => {
     if (result.rows.length === 0) {
       res.status(404).send("The person you are looking for is not here.");
@@ -101,6 +113,31 @@ app.delete("/api/people/delete/:id", (req, res) => {
 // My new code here:
 
 app.patch("/api/people/patch/:id", (req, res) => {
+  // let personId = req.params.id;
+  // let { name } = req.body;
+  // let { nickname } = req.body;
+  // let { fav_color } = req.body;
+  // let { location } = req.body;
+  // let bday = req.body.bday;
+  // let { hobby1 } = req.body;
+  // let { hobby2 } = req.body;
+  // let { hobby3 } = req.body;
+  // let values = [
+  //   name || null,
+  //   nickname || null,
+  //   fav_color || null,
+  //   location || null,
+  //   bday || null,
+  //   hobby1 || null,
+  //   hobby2 || null,
+  //   hobby3 || null,
+  //   personId,
+  // ];
+  // console.log(values);
+  // let query = `UPDATE people SET name COALESCE($1, name)  WHERE id=$9 RETURNING *`;
+  // pool(query, values).then((results) => {
+  //   console.log(results);
+  // });
   let personId = req.params.id;
   if (isNaN(personId)) {
     res.status(404).send("Enter a valid person id.");

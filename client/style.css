@@ -2,14 +2,14 @@ body {
   border: 2px solid black;
 }
 
-.peopleContainer {
+#peopleContainer, .peopleDivs {
   border: 2px solid black;
 }
 
-.memberContainer {
+#memberContainer {
   border: 2px solid black;
 }
 
-.CUDcontainer {
+#CUDcontainer {
   border: 2px solid black;
 }
