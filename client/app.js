@@ -33,13 +33,10 @@ function addPeopleListeners(div) {
         <div class="aboutme"><h3 id="aboutMeTitle">About Me:</h3>
         <p id="aboutMeInfo">My name is ${person.name}, but I go by ${person.nickname}. My favorite color is ${person.fav_color}, I live in ${person.location}, and my birthday is ${person.bday}.</p>
         </div>
-        <div class="hobbies"><h3 id="hobbiesTitle">Hobbies:</h3><p id="hobbyInfo">${person.hobby1}, ${person.hobby2}, ${person.hobby3}</p>
+        <div class="hobbies"><h3 id="hobbiesTitle">Hobbies:</h3><p id="hobbyInfo">${person.hobby_names}</p>
         </div>`;
-        //Want this to work, but for now:
-        //hobbyReqContainer.innerHTML = `<h3 id="hobbiesReq">Hobby requirements: ${person.materials_required}</h3>`;
 
-        
-        hobbyReqContainer.innerHTML = `<h3 id="hobbiesReq">Hobby requirements: ${person.hobby1}, ${person.hobby2}, ${person.hobby3}</h3>`;
+        hobbyReqContainer.innerHTML = `<h3 id="hobbiesReq">Hobby Requirements: ${person.all_materials_required}</h3>`;
       });
   });
 }
@@ -155,7 +152,7 @@ updatePersonButton.addEventListener("click", (e) => {
     hobby2: uHobby2.value,
     hobby3: uHobby3.value,
   };
-// do the patch route:
+  // do the patch route:
   fetch(`/api/people/patch/${updateData.id}`, {
     method: "PATCH",
     headers: {
