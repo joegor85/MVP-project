@@ -9,7 +9,7 @@ function displayPeople() {
       people.forEach((person) => {
         const div = document.createElement("div");
         div.classList.add("peopleDivs");
-        div.innerHTML = `<h1>${person.id}. ${person.name}</h1>`;
+        div.innerHTML = `<h2 class="peopleButtons">${person.id}. ${person.name}</h2>`;
         div.dataset.personId = person.id;
         peopleContainer.appendChild(div);
         addPeopleListeners(div);
@@ -76,6 +76,7 @@ addButton.addEventListener("click", (e) => {
     .then((response) => response.json())
     .then((data) => {
       console.log(data);
+      alert(`${data.name} created.`);
       // do something with the response - refresh the page with all people including the new one
       displayPeople();
     })
