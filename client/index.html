@@ -20,23 +20,14 @@
       <h2>Keep track of your family's information!</h2>
     </div>
     <div id="peopleContainer"></div>
-    <div id="memberContainer"></div>
-    <div id="hobbyReqContainer"></div>
-    <div id="hobbyKey">
-      <p>
-        Hobby Key: &nbsp &nbsp &nbsp1 - reading &nbsp &nbsp &nbsp2 - videogames
-        &nbsp &nbsp &nbsp3 - hiking &nbsp &nbsp &nbsp4 - running &nbsp &nbsp
-        &nbsp5 - outdoors &nbsp &nbsp &nbsp6 - boardgames &nbsp &nbsp &nbsp7 -
-        skateboarding &nbsp &nbsp &nbsp8 - cooking &nbsp &nbsp &nbsp9 -
-        traveling &nbsp &nbsp &nbsp10 - arts/crafts &nbsp &nbsp &nbsp11 -
-        cardgames &nbsp &nbsp &nbsp12 - collecting &nbsp &nbsp &nbsp13 -
-        gardening &nbsp &nbsp &nbsp14 - legos &nbsp &nbsp &nbsp15 - watching tv
-        &nbsp &nbsp &nbsp16 - bikeriding
-      </p>
+    <div id="profileContainer">
+      <h2 class="sectionTitle">Profile</h2>
+      <div id="memberContainer"></div>
     </div>
+    <div id="hobbyReqContainer"></div>
     <div id="CUDcontainer">
+      <h2 class="sectionTitle">Creating or Updating Section</h2>
       <div id="addContainer">
-        <button id="addButton">Add Person!</button>
         <input class="name" type="text" placeholder="Name" />
         <input class="nickName" type="text" placeholder="Nickname" />
         <input class="fav_color" type="text" placeholder="Favorite Color" />
@@ -45,10 +36,11 @@
         <input class="hobby1" type="text" placeholder="Hobby #1" />
         <input class="hobby2" type="text" placeholder="Hobby #2" />
         <input class="hobby3" type="text" placeholder="Hobby #3" />
+        <button id="addButton">Add Person!</button>
       </div>
       <div id="deleteContainer">
-        <button id="deleteButton">Delete Person (use with care)</button>
         <input id="deleteId" type="text" placeholder="Enter Person's Number" />
+        <button id="deleteButton">Delete Person (use with care)</button>
       </div>
       <div id="updateContainer">
         <input
@@ -59,8 +51,7 @@
         <button id="updateSearchButton">
           Search for the person you want to update.
         </button>
-        <button id="updateButton">Update this Person</button>
-        <input class="updateId" type="text" placeholder="Id" />
+        <h3 class="updateId"></h3>
         <input class="updateName" type="text" placeholder="Name" />
         <input class="updateNickname" type="text" placeholder="Nickname" />
         <input
@@ -73,9 +64,22 @@
         <input class="updateHobby1" type="text" placeholder="Hobby #1" />
         <input class="updateHobby2" type="text" placeholder="Hobby #2" />
         <input class="updateHobby3" type="text" placeholder="Hobby #3" />
+        <button id="updateButton">Update this Person</button>
+      </div>
+      <div id="hobbyKey">
+        <p>
+          <strong>Hobby Key:</strong> &nbsp &nbsp &nbsp1 - reading &nbsp &nbsp
+          &nbsp2 - videogames &nbsp &nbsp &nbsp3 - hiking &nbsp &nbsp &nbsp4 -
+          running &nbsp &nbsp &nbsp5 - outdoors &nbsp &nbsp &nbsp6 - boardgames
+          &nbsp &nbsp &nbsp7 - skateboarding &nbsp &nbsp &nbsp8 - cooking &nbsp
+          &nbsp &nbsp9 - traveling &nbsp &nbsp &nbsp10 - arts/crafts &nbsp &nbsp
+          &nbsp11 - cardgames &nbsp &nbsp &nbsp12 - collecting &nbsp &nbsp
+          &nbsp13 - gardening &nbsp &nbsp &nbsp14 - legos &nbsp &nbsp &nbsp15 -
+          watching tv &nbsp &nbsp &nbsp16 - bikeriding
+        </p>
       </div>
     </div>
   </body>
 </html>
 
-<!-- add a title to bottom section(Make Changes or something), put submit buttons on right and make them obvious, make h4 for updating hobbies (unconfuse bottom fields), make it to where you can't change id -->
+<!-- put submit buttons on right and make them obvious, make h4 for updating hobbies (unconfuse bottom fields), make it to where you can't change id -->

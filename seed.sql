@@ -17,10 +17,10 @@ INSERT INTO hobbies (name, time_cost, skill_required, materials_required) VALUES
 
 INSERT INTO people (name, nickname, fav_color, location, bday, hobby1, hobby2, hobby3) VALUES ('Stephen', 'Joe', 'red', 'Texas', 'OCT', 1, 5, 2);
 INSERT INTO people (name, nickname, fav_color, location, bday, hobby1, hobby2, hobby3) VALUES ('Kimberly', 'Kim', 'purple', 'Texas', 'DEC', 13, 8, 5);
-INSERT INTO people (name, nickname, fav_color, location, bday, hobby1, hobby2, hobby3) VALUES ('Brian', 'Brybry', 'black', 'Texas', 'SEP', 2, 14, 6);
-INSERT INTO people (name, fav_color, location, bday, hobby1, hobby2, hobby3) VALUES ('Amy', 'pink', 'Texas', 'SEP', 16, 10, 15);
+INSERT INTO people (name, nickname, fav_color, location, bday, hobby1, hobby2, hobby3) VALUES ('Brian', 'Brybry', 'black', 'Texas', 'SEP', 2, 14, 15);
+INSERT INTO people (name, nickname, fav_color, location, bday, hobby1, hobby2, hobby3) VALUES ('Amy', 'Amer', 'pink', 'Texas', 'SEP', 2, 16, 14);
 INSERT INTO people (name, nickname, fav_color, location, bday, hobby1, hobby2, hobby3) VALUES ('Jason', 'JJ', 'blue', 'Texas', 'MAR', 11, 15, 1);
-INSERT INTO people (name, nickname, location, bday, hobby1, hobby2, hobby3) VALUES ('Andrew', 'Andy', 'Texas', 'NOV', 12, 15, 2);
+INSERT INTO people (name, nickname, fav_color, location, bday, hobby1, hobby2, hobby3) VALUES ('Andrew', 'Andy', 'yellow', 'Texas', 'NOV', 12, 15, 2);
 
 -- list of hobbies:
 -- 1 - reading

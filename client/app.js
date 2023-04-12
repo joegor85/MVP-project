@@ -66,7 +66,7 @@ addButton.addEventListener("click", (e) => {
     hobby3: hobby3,
   };
 
-  fetch("/api/people/post", {
+  fetch("/api/people", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -92,7 +92,7 @@ deleteButton.addEventListener("click", (e) => {
   //this prevents the browser from navigating to a new page in the post route
   e.preventDefault();
   console.log(deleteId);
-  fetch(`/api/people/delete/${deleteId.value}`, {
+  fetch(`/api/people/${deleteId.value}`, {
     method: "Delete",
   })
     .then((response) => response.text())
@@ -126,7 +126,7 @@ searchButton.addEventListener("click", (e) => {
     .then((response) => response.json())
     .then((person) => {
       console.log(person);
-      uId.value = person.id;
+      uId.innerText = person.id;
       uName.value = person.name;
       uNickname.value = person.nickname;
       uFavColor.value = person.fav_color;
@@ -143,7 +143,7 @@ const updatePersonButton = document.querySelector("#updateButton");
 updatePersonButton.addEventListener("click", (e) => {
   e.preventDefault();
   const updateData = {
-    id: uId.value,
+    id: uId.innerText,
     name: uName.value,
     nickname: uNickname.value,
     fav_color: uFavColor.value,
@@ -154,7 +154,7 @@ updatePersonButton.addEventListener("click", (e) => {
     hobby3: uHobby3.value,
   };
   // do the patch route:
-  fetch(`/api/people/patch/${updateData.id}`, {
+  fetch(`/api/people/${updateData.id}`, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",

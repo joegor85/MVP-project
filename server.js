@@ -22,7 +22,7 @@ app.get("/test", (req, res) => {
 
 // Read all people
 app.get("/api/people", (req, res) => {
-  pool.query(`SELECT * FROM people`).then((result) => {
+  pool.query(`SELECT * FROM people ORDER BY id;`).then((result) => {
     //console.log(result.rows);
     res.json(result.rows);
   });
@@ -64,7 +64,7 @@ GROUP BY
 });
 
 // Create a new person
-app.post("/api/people/post", (req, res) => {
+app.post("/api/people", (req, res) => {
   let member = req.body;
   if (!member.name || !member.bday) {
     res.status(400).send("You need a name and a bday");
@@ -82,7 +82,7 @@ app.post("/api/people/post", (req, res) => {
   } else {
     pool
       .query(
-        `INSERT INTO people (name, nickname, fav_color, location, bday, hobby1, hobby2, hobby3) VALUES ($1, $2, $3, $4, $5, $6, $7, $8);`,
+        `INSERT INTO people (name, nickname, fav_color, location, bday, hobby1, hobby2, hobby3) VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *;`,
         [
           member.name,
           member.nickname,
@@ -95,13 +95,13 @@ app.post("/api/people/post", (req, res) => {
         ]
       )
       .then((result) => {
-        res.status(201).send(member);
+        res.status(201).send(result.rows[0]);
       });
   }
 });
 
 // Delete a person
-app.delete("/api/people/delete/:id", (req, res) => {
+app.delete("/api/people/:id", (req, res) => {
   let id = req.params.id;
   console.log(id);
   if (isNaN(id)) {
@@ -118,10 +118,13 @@ app.delete("/api/people/delete/:id", (req, res) => {
       pool
         .query(`DELETE FROM people WHERE id = $1 RETURNING *;`, [id])
         .then((result) => {
-          //console.log(result);
-          //console.log(result.rows[0].name);
+          const deletedPersonId = result.rows[0].id;
           const deletedPersonName = result.rows[0].name;
-          res.status(200).send(`${deletedPersonName} has been deleted.`);
+          res
+            .status(200)
+            .send(
+              `(${deletedPersonId}. ${deletedPersonName}) has been deleted.`
+            );
         });
     }
   });
@@ -130,7 +133,7 @@ app.delete("/api/people/delete/:id", (req, res) => {
 //Update a Person
 // My new code here:
 
-app.patch("/api/people/patch/:id", (req, res) => {
+app.patch("/api/people/:id", (req, res) => {
   // let personId = req.params.id;
   // let { name } = req.body;
   // let { nickname } = req.body;

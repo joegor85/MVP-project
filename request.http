@@ -8,7 +8,7 @@ GET http://localhost:3000/api/people
 GET http://localhost:3000/api/people/18
 
 ###
-POST http://localhost:3000/api/people/post
+POST http://localhost:3000/api/people
 Content-Type: application/json
 
 {
@@ -24,22 +24,22 @@ Content-Type: application/json
 
 # Testing Delete
 ###
-DELETE http://localhost:3000/api/people/delete/8
+DELETE http://localhost:3000/api/people/27
 
 # Testing Patch
 ###
-PATCH http://localhost:3000/api/people/patch/9
+PATCH http://localhost:3000/api/people/26
 Content-Type: application/json
 
 {
-    "fav_color": "Dark",
-    "location": "Mandalore"
+    "fav_color": "DARK",
+    "location": "Star Wars"
 }
 
 ###
-PATCH http://localhost:3000/api/people/patch/9
+PATCH http://localhost:3000/api/people/9
 Content-Type: application/json
 
 {
-    "name":"The Mandalorian"
+    "name":"The Mando"
 }
