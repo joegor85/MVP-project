@@ -1,7 +1,8 @@
-/* body {
-  border: 2px solid black;
-  border-radius: 10px;
-} */
+body {
+  /* border: 2px solid black;
+  border-radius: 10px; */
+  background-color: rgb(177, 127, 224);
+}
 
 #peopleContainer {
   display: flex;
@@ -18,7 +19,7 @@
 
 h1 {
   text-align: center;
-  font-family: 'Russo One', sans-serif;
+  font-family: "Russo One", sans-serif;
 }
 
 h2 {
@@ -50,6 +51,7 @@ h2 {
   padding: 10px;
   min-height: 265px;
   border-radius: 10px;
+  background-color: white;
 }
 
 #hobbyReqContainer {
@@ -58,6 +60,7 @@ h2 {
   padding: 10px;
   min-height: 59px;
   border-radius: 10px;
+  background-color: white;
 }
 
 #hobbyKey {
@@ -65,9 +68,16 @@ h2 {
   margin: 50px;
   padding: 10px;
   border-radius: 10px;
+  background-color: white;
 }
 
-#CUDcontainer,
+#CUDcontainer {
+  background-color: white;
+  border: 2px solid black;
+  margin: 50px;
+  padding: 10px;
+  border-radius: 10px;
+}
 #addContainer,
 #deleteContainer,
 #updateContainer {
