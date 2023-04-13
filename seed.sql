@@ -23,6 +23,7 @@ INSERT INTO people (name, nickname, fav_color, location, bday, hobby1, hobby2, h
 INSERT INTO people (name, nickname, fav_color, location, bday, hobby1, hobby2, hobby3) VALUES ('Andrew', 'Andy', 'yellow', 'Texas', 'NOV', 12, 15, 2);
 INSERT INTO people (name, nickname, fav_color, location, bday, hobby1, hobby2, hobby3, image) VALUES ('The Mandalorian', 'Mando', 'beskar', 'a galaxy far far away', 'unknown', 12, 9, 4, 'https://m.media-amazon.com/images/M/MV5BZjRlZDIyNDMtZjIwYi00YmJiLTg4NjMtODA2Mjc0YTBlNzIwXkEyXkFqcGdeQXVyMDM2NDM2MQ@@._V1_.jpg');
 INSERT INTO people (name, nickname, fav_color, location, bday, hobby1, hobby2, hobby3, image) VALUES ('Master Yoda', 'Yoda', 'green', 'Coruscant', '896 BBY', 5, 13, 9, 'https://m.media-amazon.com/images/M/MV5BMzIwODYyODIzNV5BMl5BanBnXkFtZTcwNzI2NzI4NA@@._V1_.jpg');
+INSERT INTO people (name, nickname, fav_color, location, bday, hobby1, hobby2, hobby3, image) VALUES ('Peter Griffin', 'Petuh', 'ehehehehehehehe', 'Quahog, Rhode Island', 'September 22, 1966', 15, 15, 15, 'https://upload.wikimedia.org/wikipedia/en/c/c2/Peter_Griffin.png')
 
 -- list of hobbies:
 -- 1 - reading

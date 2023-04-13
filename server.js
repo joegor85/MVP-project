@@ -230,7 +230,6 @@ app.patch("/api/people/:id", (req, res) => {
     });
 });
 
-
 //start the server running
 app.listen(PORT, (error) => {
   if (error) console.log(error);
