@@ -15,30 +15,6 @@ INSERT INTO hobbies (name, time_cost, skill_required, materials_required) VALUES
 INSERT INTO hobbies (name, time_cost, skill_required, materials_required) VALUES ('watching tv', 'low', FALSE, 'television');
 INSERT INTO hobbies (name, time_cost, skill_required, materials_required) VALUES ('bikeriding', 'low', TRUE, 'bicycle');
 
-INSERT INTO people (name, nickname, fav_color, location, bday, hobby1, hobby2, hobby3) VALUES ('Stephen', 'Joe', 'red', 'Texas', 'day', 1, 5, 2);
-INSERT INTO people (name, nickname, fav_color, location, bday, hobby1, hobby2, hobby3) VALUES ('Kimberly', 'Kim', 'purple', 'Texas', 'day', 13, 8, 5);
-INSERT INTO people (name, nickname, fav_color, location, bday, hobby1, hobby2, hobby3) VALUES ('Brian', 'Brybry', 'black', 'Texas', 'day', 2, 14, 15);
-INSERT INTO people (name, nickname, fav_color, location, bday, hobby1, hobby2, hobby3) VALUES ('Amy', 'Amer', 'pink', 'Texas', 'day', 2, 16, 14);
-INSERT INTO people (name, nickname, fav_color, location, bday, hobby1, hobby2, hobby3) VALUES ('Jason', 'JJ', 'blue', 'Texas', 'day', 11, 15, 1);
-INSERT INTO people (name, nickname, fav_color, location, bday, hobby1, hobby2, hobby3) VALUES ('Andrew', 'Andy', 'yellow', 'Texas', 'day', 12, 15, 2);
 INSERT INTO people (name, nickname, fav_color, location, bday, hobby1, hobby2, hobby3, image) VALUES ('The Mandalorian', 'Mando', 'beskar', 'a galaxy far far away', 'unknown', 12, 9, 4, 'https://m.media-amazon.com/images/M/MV5BZjRlZDIyNDMtZjIwYi00YmJiLTg4NjMtODA2Mjc0YTBlNzIwXkEyXkFqcGdeQXVyMDM2NDM2MQ@@._V1_.jpg');
 INSERT INTO people (name, nickname, fav_color, location, bday, hobby1, hobby2, hobby3, image) VALUES ('Master Yoda', 'Yoda', 'green', 'Coruscant', '896 BBY', 5, 13, 9, 'https://m.media-amazon.com/images/M/MV5BMzIwODYyODIzNV5BMl5BanBnXkFtZTcwNzI2NzI4NA@@._V1_.jpg');
 INSERT INTO people (name, nickname, fav_color, location, bday, hobby1, hobby2, hobby3, image) VALUES ('Peter Griffin', 'Petuh', 'ehehehehehehehe', 'Quahog, Rhode Island', 'September 22, 1966', 15, 15, 15, 'https://upload.wikimedia.org/wikipedia/en/c/c2/Peter_Griffin.png')
-
--- list of hobbies:
--- 1 - reading
--- 2 - videogames
--- 3 - hiking
--- 4 - running
--- 5 - outdoors
--- 6 - boardgames
--- 7 - skateboarding
--- 8 - cooking
--- 9 - traveling
--- 10 - arts/crafts
--- 11 - cardgames
--- 12 - collecting
--- 13 - gardening
--- 14 - legos
--- 15 - watching tv
--- 16 - bikeriding
