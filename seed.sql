@@ -21,6 +21,8 @@ INSERT INTO people (name, nickname, fav_color, location, bday, hobby1, hobby2, h
 INSERT INTO people (name, nickname, fav_color, location, bday, hobby1, hobby2, hobby3) VALUES ('Amy', 'Amer', 'pink', 'Texas', 'SEP', 2, 16, 14);
 INSERT INTO people (name, nickname, fav_color, location, bday, hobby1, hobby2, hobby3) VALUES ('Jason', 'JJ', 'blue', 'Texas', 'MAR', 11, 15, 1);
 INSERT INTO people (name, nickname, fav_color, location, bday, hobby1, hobby2, hobby3) VALUES ('Andrew', 'Andy', 'yellow', 'Texas', 'NOV', 12, 15, 2);
+INSERT INTO people (name, nickname, fav_color, location, bday, hobby1, hobby2, hobby3, image) VALUES ('The Mandalorian', 'Mando', 'beskar', 'a galaxy far far away', 'unknown', 12, 9, 4, 'https://m.media-amazon.com/images/M/MV5BZjRlZDIyNDMtZjIwYi00YmJiLTg4NjMtODA2Mjc0YTBlNzIwXkEyXkFqcGdeQXVyMDM2NDM2MQ@@._V1_.jpg');
+INSERT INTO people (name, nickname, fav_color, location, bday, hobby1, hobby2, hobby3, image) VALUES ('Master Yoda', 'Yoda', 'green', 'Coruscant', '896 BBY', 5, 13, 9, 'https://m.media-amazon.com/images/M/MV5BMzIwODYyODIzNV5BMl5BanBnXkFtZTcwNzI2NzI4NA@@._V1_.jpg');
 
 -- list of hobbies:
 -- 1 - reading

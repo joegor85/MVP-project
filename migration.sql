@@ -14,11 +14,12 @@ id serial PRIMARY KEY,
 name varchar(20),
 nickname varchar(20),
 fav_color varchar(20),
-location varchar(20),
+location varchar(30),
 bday varchar(20),
 hobby1 integer REFERENCES hobbies(hobby_id),
 hobby2 integer REFERENCES hobbies(hobby_id),
-hobby3 integer REFERENCES hobbies(hobby_id)
+hobby3 integer REFERENCES hobbies(hobby_id),
+image text
 );
 
 -- list of hobbies:

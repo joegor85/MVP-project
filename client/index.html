@@ -26,7 +26,7 @@
     </div>
     <div id="hobbyReqContainer"></div>
     <div id="CUDcontainer">
-      <h2 class="sectionTitle">Creating or Updating Section</h2>
+      <h2 class="sectionTitle">Creating / Updating Section</h2>
       <div id="addContainer">
         <input class="name" type="text" placeholder="Name" />
         <input class="nickName" type="text" placeholder="Nickname" />
@@ -43,28 +43,32 @@
         <button id="deleteButton">Delete Person (use with care)</button>
       </div>
       <div id="updateContainer">
-        <input
-          id="updateNameSearch"
-          type="text"
-          placeholder="Type Person's Number Here"
-        />
-        <button id="updateSearchButton">
-          Search for the person you want to update.
-        </button>
-        <h3 class="updateId"></h3>
-        <input class="updateName" type="text" placeholder="Name" />
-        <input class="updateNickname" type="text" placeholder="Nickname" />
-        <input
-          class="updateFav_color"
-          type="text"
-          placeholder="Favorite Color"
-        />
-        <input class="updateLocation" type="text" placeholder="Location" />
-        <input class="updateBday" type="text" placeholder="Birthday" />
-        <input class="updateHobby1" type="text" placeholder="Hobby #1" />
-        <input class="updateHobby2" type="text" placeholder="Hobby #2" />
-        <input class="updateHobby3" type="text" placeholder="Hobby #3" />
-        <button id="updateButton">Update this Person</button>
+        <div id="updateSearchContainer">
+          <input
+            id="updateNameSearch"
+            type="text"
+            placeholder="Type Person ID Here"
+          />
+          <button id="updateSearchButton">
+            Search for the person you want to update
+          </button>
+        </div>
+        <div id="updateFieldsContainer">
+          <h3 class="updateId"></h3>
+          <input class="updateName" type="text" placeholder="Name" />
+          <input class="updateNickname" type="text" placeholder="Nickname" />
+          <input
+            class="updateFav_color"
+            type="text"
+            placeholder="Favorite Color"
+          />
+          <input class="updateLocation" type="text" placeholder="Location" />
+          <input class="updateBday" type="text" placeholder="Birthday" />
+          <input class="updateHobby1" type="text" placeholder="Hobby #1" />
+          <input class="updateHobby2" type="text" placeholder="Hobby #2" />
+          <input class="updateHobby3" type="text" placeholder="Hobby #3" />
+          <button id="updateButton">Update this Person</button>
+        </div>
       </div>
       <div id="hobbyKey">
         <p>
@@ -81,5 +85,3 @@
     </div>
   </body>
 </html>
-
-<!-- put submit buttons on right and make them obvious, make h4 for updating hobbies (unconfuse bottom fields), make it to where you can't change id -->

@@ -29,14 +29,16 @@ function addPeopleListeners(div) {
       .then((response) => response.json())
       .then((person) => {
         console.log(person);
-        memberContainer.innerHTML = `<h2 id="name">Name: ${person.name}</h2><h2 id="nickname">Nickname: ${person.nickname}</h2>
+        // let personImage = person.image;
+        // if (personImage == null) personImage = "No Image to Display";
+        memberContainer.innerHTML = `<img src="${person.image}" alt="No image to display."><h2 id="name">Name: ${person.name}</h2><h2 id="nickname">Nickname: ${person.nickname}</h2>
         <div class="aboutme"><h3 id="aboutMeTitle">About Me:</h3>
         <p id="aboutMeInfo">My name is ${person.name}, but I go by ${person.nickname}. My favorite color is ${person.fav_color}, I live in ${person.location}, and my birthday is ${person.bday}.</p>
         </div>
         <div class="hobbies"><h3 id="hobbiesTitle">Hobbies:</h3><p id="hobbyInfo">${person.hobby_names}</p>
         </div>`;
 
-        hobbyReqContainer.innerHTML = `<h3 id="hobbiesReq">Hobby Requirements: ${person.all_materials_required}</h3>`;
+        hobbyReqContainer.innerHTML = `<h3 id="hobbiesReq">Hobby Requirements: &nbsp &nbsp &nbsp${person.all_materials_required}</h3>`;
       });
   });
 }
@@ -123,10 +125,19 @@ searchButton.addEventListener("click", (e) => {
   e.preventDefault();
   const searchInput = document.querySelector("#updateNameSearch");
   fetch(`/api/people/${searchInput.value}`)
-    .then((response) => response.json())
+    // .then((response) => response.json())
+    // .then((person) => {
+    //testing this out instead of two lines above:
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Please input an existing user id");
+      }
+      return response.json();
+    })
     .then((person) => {
+      //end of test section
       console.log(person);
-      uId.innerText = person.id;
+      uId.innerText = `User ID:  ${person.id}`;
       uName.value = person.name;
       uNickname.value = person.nickname;
       uFavColor.value = person.fav_color;
@@ -135,6 +146,10 @@ searchButton.addEventListener("click", (e) => {
       uHobby1.value = person.hobby1;
       uHobby2.value = person.hobby2;
       uHobby3.value = person.hobby3;
+    })
+    //added these next three lines in as part of test above
+    .catch((error) => {
+      alert(error.message);
     });
 });
 

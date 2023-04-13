@@ -134,32 +134,8 @@ app.delete("/api/people/:id", (req, res) => {
 // My new code here:
 
 app.patch("/api/people/:id", (req, res) => {
-  // let personId = req.params.id;
-  // let { name } = req.body;
-  // let { nickname } = req.body;
-  // let { fav_color } = req.body;
-  // let { location } = req.body;
-  // let bday = req.body.bday;
-  // let { hobby1 } = req.body;
-  // let { hobby2 } = req.body;
-  // let { hobby3 } = req.body;
-  // let values = [
-  //   name || null,
-  //   nickname || null,
-  //   fav_color || null,
-  //   location || null,
-  //   bday || null,
-  //   hobby1 || null,
-  //   hobby2 || null,
-  //   hobby3 || null,
-  //   personId,
-  // ];
-  // console.log(values);
-  // let query = `UPDATE people SET name COALESCE($1, name)  WHERE id=$9 RETURNING *`;
-  // pool(query, values).then((results) => {
-  //   console.log(results);
-  // });
   let personId = req.params.id;
+
   if (isNaN(personId)) {
     res.status(404).send("Enter a valid person id.");
     return;
@@ -173,53 +149,87 @@ app.patch("/api/people/:id", (req, res) => {
         res.status(404).send("This person doesn't exist.");
         return;
       } else {
-        //let key = Object.keys(req.body)[0];
-        //let value = Object.values(req.body)[0];
-        // Iterate over all key-value pairs in request body
-        let updatedFields = {};
-        Object.entries(req.body).forEach(([key, value]) => {
-          // Update the necessary field in the database
-          pool
-            .query(`UPDATE people SET ${key}=$1 WHERE id=$2 RETURNING *`, [
-              value,
-              personId,
-            ])
-            .then((result) => {
-              result = result.rows[0];
-              updatedFields[key] = value;
-              //res.send(result);
-              console.log(`Updated ${key} to ${value}`);
-              // Check if all fields have been updated
-              if (
-                Object.keys(updatedFields).length ===
-                Object.keys(req.body).length
-              ) {
-                // Fetch the updated person record and return it as the response
-                pool
-                  .query(`SELECT * FROM people WHERE id = $1`, [personId])
-                  .then((result) => {
-                    res.send(result.rows[0]);
-                  })
-                  .catch((error) => {
-                    console.error(
-                      `Failed to fetch updated person record: ${error}`
-                    );
-                    res.status(500).send("Internal Server Error");
-                  });
-              }
-            })
-            .catch((error) => {
-              res.status(500).send(`Failed to update ${key}: ${error}`);
-              console.error(`Failed to update ${key}: ${error}`);
-            });
-        });
+        let { name } = req.body;
+        let { nickname } = req.body;
+        let { fav_color } = req.body;
+        let { location } = req.body;
+        let bday = req.body.bday;
+        let { hobby1 } = req.body;
+        let { hobby2 } = req.body;
+        let { hobby3 } = req.body;
+        let values = [
+          name || null,
+          nickname || null,
+          fav_color || null,
+          location || null,
+          bday || null,
+          hobby1 || null,
+          hobby2 || null,
+          hobby3 || null,
+          personId,
+        ];
+        console.log(values);
+        const query = `UPDATE people SET name = COALESCE($1, name), nickname = COALESCE($2, nickname), fav_color = COALESCE($3, fav_color), location = COALESCE($4, location), bday = COALESCE($5, bday), hobby1 = COALESCE($6, hobby1), hobby2 = COALESCE($7, hobby2), hobby3 = COALESCE($8, hobby3) WHERE id = $9 RETURNING *;`;
+        pool
+          .query(query, values)
+          .then((results) => {
+            console.log(results.rows[0]);
+            res.status(201).send(results.rows[0]);
+          })
+          .catch((error) => {
+            res.status(500).send("Failed to update");
+            console.error(error);
+          });
+
+        //     //let key = Object.keys(req.body)[0];
+        //     //let value = Object.values(req.body)[0];
+        //     // Iterate over all key-value pairs in request body
+        //     let updatedFields = {};
+        //     Object.entries(req.body).forEach(([key, value]) => {
+        //       // Update the necessary field in the database
+        //       pool
+        //         .query(`UPDATE people SET ${key}=$1 WHERE id=$2 RETURNING *`, [
+        //           value,
+        //           personId,
+        //         ])
+        //         .then((result) => {
+        //           result = result.rows[0];
+        //           updatedFields[key] = value;
+        //           //res.send(result);
+        //           console.log(`Updated ${key} to ${value}`);
+        //           // Check if all fields have been updated
+        //           if (
+        //             Object.keys(updatedFields).length ===
+        //             Object.keys(req.body).length
+        //           ) {
+        //             // Fetch the updated person record and return it as the response
+        //             pool
+        //               .query(`SELECT * FROM people WHERE id = $1`, [personId])
+        //               .then((result) => {
+        //                 res.send(result.rows[0]);
+        //               })
+        //               .catch((error) => {
+        //                 console.error(
+        //                   `Failed to fetch updated person record: ${error}`
+        //                 );
+        //                 res.status(500).send("Internal Server Error");
+        //               });
+        //           }
+        //         })
+        //         .catch((error) => {
+        //           res.status(500).send(`Failed to update ${key}: ${error}`);
+        //           console.error(`Failed to update ${key}: ${error}`);
+        //         });
+        //     });
+        //   }
+        // })
+        // .catch((error) => {
+        //   console.error(`Failed to fetch person record: ${error}`);
+        //   res.status(500).send("Internal Server Error");
       }
-    })
-    .catch((error) => {
-      console.error(`Failed to fetch person record: ${error}`);
-      res.status(500).send("Internal Server Error");
     });
 });
+
 
 //start the server running
 app.listen(PORT, (error) => {
