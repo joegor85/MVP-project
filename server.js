@@ -132,7 +132,6 @@ app.delete("/api/people/:id", (req, res) => {
 
 //Update a Person
 // My new code here:
-
 app.patch("/api/people/:id", (req, res) => {
   let personId = req.params.id;
   pool
@@ -178,7 +177,7 @@ app.patch("/api/people/:id", (req, res) => {
       }
     });
 });
-
+//Old version without coalesce:
 //   if (isNaN(personId)) {
 //     res.status(404).send("Enter a valid person id.");
 //     return;
