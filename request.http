@@ -37,9 +37,9 @@ Content-Type: application/json
 }
 
 ###
-PATCH http://localhost:3000/api/people/7
+PATCH http://localhost:3000/api/people/10
 Content-Type: application/json
 
 {
-    "location":"a galaxy far far away"
+    "nickname":"jimbo"
 }

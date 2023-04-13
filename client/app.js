@@ -137,7 +137,7 @@ searchButton.addEventListener("click", (e) => {
     .then((person) => {
       //end of test section
       console.log(person);
-      uId.innerText = `User ID:  ${person.id}`;
+      uId.innerText = `${person.id}`;
       uName.value = person.name;
       uNickname.value = person.nickname;
       uFavColor.value = person.fav_color;
@@ -168,6 +168,7 @@ updatePersonButton.addEventListener("click", (e) => {
     hobby2: uHobby2.value,
     hobby3: uHobby3.value,
   };
+  console.log(updateData.id);
   // do the patch route:
   fetch(`/api/people/${updateData.id}`, {
     method: "PATCH",
