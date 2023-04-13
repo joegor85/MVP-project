@@ -135,9 +135,9 @@ app.delete("/api/people/:id", (req, res) => {
 
 app.patch("/api/people/:id", (req, res) => {
   let personId = req.params.id;
-
+  console.log(personId);
   if (isNaN(personId)) {
-    res.status(404).send("Enter a valid person id.");
+    res.status(404).json({ error: "Enter a valid person id." });
     return;
   }
   pool
